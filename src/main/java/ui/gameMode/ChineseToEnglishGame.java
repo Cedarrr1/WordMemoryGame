@@ -15,6 +15,7 @@ public class ChineseToEnglishGame extends GameGui {
     @Override
     protected void initializeButtonListeners() {
         submitButton.addActionListener(e -> checkAnswer());
+        inputField.addActionListener(e -> checkAnswer());
     }
 
     private void checkAnswer() {
@@ -37,20 +38,20 @@ public class ChineseToEnglishGame extends GameGui {
         fetchRandomChineseExplanation(); // 获取新题目并重启计时器
     }
 
-    private int getButtonIndex(String option) {
-        switch (option) {
-            case "A":
-                return 0;
-            case "B":
-                return 1;
-            case "C":
-                return 2;
-            case "D":
-                return 3;
-            default:
-                return -1;
-        }
-    }
+//    private int getButtonIndex(String option) {
+//        switch (option) {
+//            case "A":
+//                return 0;
+//            case "B":
+//                return 1;
+//            case "C":
+//                return 2;
+//            case "D":
+//                return 3;
+//            default:
+//                return -1;
+//        }
+//    }
 
     @Override
     protected void initializeGameLogic() {
