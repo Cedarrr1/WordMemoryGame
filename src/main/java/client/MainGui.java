@@ -1,7 +1,8 @@
-package ui;
+package client;
 
-import ui.gameMode.ChineseToEnglishGame;
-import ui.gameMode.EnglishToChineseGame;
+import client.gameMode.ChineseToEnglishGame;
+import client.gameMode.EnglishToChineseGame;
+import client.gameMode.WordsReview;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,11 +12,14 @@ import java.awt.event.ActionListener;
 public class MainGui {
     private JFrame f;
     private JButton b1, b2, b3, b4;
+    private Client client;
 
     private static final int WINDOW_WIDTH = 600;
     private static final int WINDOW_HEIGHT = 700;
 
-    public MainGui() {
+    public MainGui(Client client) {
+        this.client = client;
+
         // 创建窗口
         f = new JFrame("单词记忆游戏 - 主界面");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,9 +53,10 @@ public class MainGui {
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println("根据中文补充英文 按钮被点击");
                 // 关闭当前窗口
                 f.dispose();
-                new ChineseToEnglishGame();
+                new ChineseToEnglishGame(client);
             }
         });
 
@@ -59,24 +64,34 @@ public class MainGui {
         b2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println("根据英文选择中文 按钮被点击");
                 // 关闭当前窗口
                 f.dispose();
-                new EnglishToChineseGame();
+                new EnglishToChineseGame(client);
             }
         });
 
-        //复习单词
+        // 复习单词
         b3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println("复习单词 按钮被点击");
+                // 关闭当前窗口
                 f.dispose();
-                new WordsReview().setVisible(true);
+                try {
+                    new WordsReview(client);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(f, "无法启动复习单词界面: " + ex.getMessage(), "错误", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
+
         // 退出程序
         b4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println("退出 按钮被点击");
                 System.exit(0);
             }
         });
@@ -104,8 +119,18 @@ public class MainGui {
     }
 
     public static void main(String[] args) {
-        new MainGui();
+        SwingUtilities.invokeLater(() -> {
+            try {
+                Client client = new Client();
+                new MainGui(client);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "无法启动主界面: " + ex.getMessage(), "错误", JOptionPane.ERROR_MESSAGE);
+            }
+        });
     }
 }
+
+
 
 

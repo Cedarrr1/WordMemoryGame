@@ -2,3 +2,10 @@ manual: 手册, 指南
 warehouse: 贮入仓库, <俚>[经]以他人名义购进(股票)
 drain: 排水, 流干
 evoke: 唤起, 引起, 博得
+disgust: 使作呕
+howl: 嚎叫, 怒吼, 嚎啕大哭, 喝住, 号叫
+scrap: 互相殴打
+diminish: (使)减少, (使)变小
+cancel: 取消, 删去
+sociology: 社会学
+suspicious: (～of)可疑的, 怀疑的

@@ -26,7 +26,12 @@ public class HealthBar extends JPanel {
         g.fillRect(0, 0, getWidth(), getHeight());
 
         // 计算当前生命值的高度
-        int healthHeight = (int) ((double) currentHP / maxHP * getHeight());
+        int healthHeight;
+        if(currentHP >= 10) {
+            healthHeight = (int) ((double) 10 / maxHP * getHeight());
+        } else {
+            healthHeight = (int) ((double) currentHP / maxHP * getHeight());
+        }
 
         // 绘制当前生命值的红色矩形
         g.setColor(Color.RED);
