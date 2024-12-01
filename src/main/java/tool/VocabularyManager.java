@@ -22,11 +22,14 @@ public class VocabularyManager {
     public void initializeDatabase() {
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)) {
             Statement stmt = conn.createStatement();
+            //创建words表 id列作为主键， ens列存储英文拼写
+            // pos列存储词性、mean列存储中文含义
             String sql = "CREATE TABLE IF NOT EXISTS words (" +
                     "id INT AUTO_INCREMENT PRIMARY KEY," +
                     "enS VARCHAR(255) NOT NULL," +
                     "pos VARCHAR(50)," +
                     "mean TEXT)";
+            //执行查询
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -39,7 +42,7 @@ public class VocabularyManager {
             Gson gson = new Gson();
             Type type = new TypeToken<Map<String, Object>>() {}.getType();
             Map<String, Object> dataMap = gson.fromJson(jsonContent, type);
-
+            // 读取对象中的data字段
             Map<String, Object> data = (Map<String, Object>) dataMap.get("data");
             if (data != null) {
                 for (String key : data.keySet()) {

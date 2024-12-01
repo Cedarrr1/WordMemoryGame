@@ -9,3 +9,25 @@ diminish: (使)减少, (使)变小
 cancel: 取消, 删去
 sociology: 社会学
 suspicious: (～of)可疑的, 怀疑的
+constant: 不变的, 持续的, 坚决的
+hug: 拥抱
+register: 登记, 注册, 挂号
+figure: 外形, 体形, 图形, 画像, 数字, 形状, 身份
+ritual: 典礼, (宗教)仪式, 礼节
+receipt: 收到
+abnormal: 反常的, 变态的
+quest: 寻求
+priest: 牧师
+marshal: 元帅, 典礼官, 执行官, 司仪官
+exotic: 异国情调的, 外来的, 奇异的
+represent: 提出异议
+opponent: 对立的, 对抗的
+budget: 预算
+batter: 击球手
+oxygen: [化]氧
+proof: 不能透入的, 证明用的, 防...的, 有耐力的
+sparkle: 火花, 闪光, 光彩, 活力, 发泡
+encounter: 遭遇, 遇到, 相遇
+frantic: 狂乱的, 疯狂的
+partial: 部分的, 局部的, 偏袒的, 偏爱的
+faculty: 才能, 本领, 能力, 全体教员, (大学的)系, 科, (授予的)权力

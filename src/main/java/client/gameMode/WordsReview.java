@@ -148,7 +148,7 @@ public class WordsReview extends JFrame {
     // 主方法用于测试
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            Client dummyClient = new Client(); // 假设有一个简单的Client类
+            Client dummyClient = new Client(); // 一个简单的Client类
             WordsReview review = new WordsReview(dummyClient);
         });
     }

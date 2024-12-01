@@ -17,7 +17,7 @@ public class Server {
     public Server() {
         vocabularyManager = new VocabularyManager();
         vocabularyManager.initializeDatabase();
-        vocabularyManager.loadWordsFromJson("Words.json"); // 词汇表文件名
+        vocabularyManager.loadWordsFromJson("Words.json");
 
         loadUserCredentials(); // 加载用户凭证
     }
@@ -44,6 +44,7 @@ public class Server {
         try {
             serverSocket = new ServerSocket(PORT);
             System.out.println("Server started on port " + PORT);
+            //确保界面关闭时 对应clientHandler管理的socket正常关闭
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
                 try {
                     if (serverSocket != null && !serverSocket.isClosed()) {
@@ -55,6 +56,7 @@ public class Server {
                 }
             }));
 
+            //主线程等待客户端连接
             while (true) {
                 Socket clientSocket = serverSocket.accept();
                 System.out.println("New client connected");
@@ -102,13 +104,12 @@ public class Server {
                 closeResources();
             }
         }
-
+        // 验证账号密码
         private boolean authenticate(String username, String password) {
             return userCredentials.containsKey(username) && userCredentials.get(username).equals(password);
         }
 
         private void handleGameSession() throws IOException {
-            // 游戏逻辑将在后续添加
             out.println("GAME_STARTED");
             while (true) {
                 String command = in.readLine();
@@ -138,69 +139,6 @@ public class Server {
 
 
 
-
-
-
-
-
-
-
-
-//package server;
-//
-//import java.io.*;
-//import java.net.*;
-//import java.util.List;
-//import java.util.Map;
-//
-//public class Server {
-//    private static final int PORT = 12345;
-//    private static final String FILE_PATH = "Words.json";
-//    private VocabularyManager vocabularyManager;
-//
-//    public Server() {
-//        vocabularyManager = new VocabularyManager();
-//        vocabularyManager.initializeDatabase();
-//        vocabularyManager.loadWordsFromJson(FILE_PATH);
-//    }
-//
-//    public void start() throws IOException {
-//        ServerSocket serverSocket = null;
-//        try {
-//            serverSocket = new ServerSocket(PORT);
-//            System.out.println("服务器启动，等待客户端连接...");
-//
-//            // 等待客户端连接
-//            Socket clientSocket = serverSocket.accept();
-//            System.out.println("客户端连接成功: " + clientSocket.getInetAddress());
-//
-//            // 获取输入流和输出流
-//            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-//            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-//
-//            // 读取客户端发送的消息
-//            String inputLine;
-//            while ((inputLine = in.readLine()) != null) {
-//                System.out.println("收到客户端消息: " + inputLine);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } finally {
-//            if (serverSocket != null) {
-//                try {
-//                    serverSocket.close();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-//    }
-//
-//    public static void main(String[] args) throws IOException {
-//        new Server().start();
-//        System.out.println("服务器启动");
-//    }
-//}
 
 
 

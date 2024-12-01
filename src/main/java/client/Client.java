@@ -11,11 +11,11 @@ public class Client {
     private static final int PORT = 12345; // 服务器端口号
     private Socket socket;
     private PrintWriter out;
-    private BufferedReader in;
+    private BufferedReader in; // 字符
 
     public Client() {
         try {
-            socket = new Socket(SERVER_ADDRESS, PORT);
+            socket = new Socket(SERVER_ADDRESS, PORT); //套接字提供通信端点
             out = new PrintWriter(socket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             System.out.println("客户端连接成功");
