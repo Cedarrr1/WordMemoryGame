@@ -16,6 +16,12 @@ public class FileUtil {
         saveToFile(UNMASTERED_WORDS_FILE, word, meaning + " (" + status + ")");
     }
 
+    /**
+     *
+     * @param filePath
+     * @param word
+     * @param detail 作答错误 or 未回答
+     */
     private static void saveToFile(String filePath, String word, String detail) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             writer.write(word + ": " + detail);

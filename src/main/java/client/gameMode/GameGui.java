@@ -184,7 +184,10 @@ public abstract class GameGui {
         return panel;
     }
 
-    // 创建输入框和提交按钮的panel
+    /**
+     *      创建输入框和提交按钮的panel
+     * @return
+     */
     protected JPanel createInputPanel() {
         JPanel panel = new JPanel();
         panel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
@@ -206,8 +209,9 @@ public abstract class GameGui {
     // 初始化按钮监听器
     protected abstract void initializeButtonListeners();
 
-    // 抽象方法，用于初始化游戏逻辑
-    // 在初始化逻辑中加入对游戏模式的判断
+    /**
+     * 初始化游戏逻辑
+     */
     protected void initializeGameLogic() {
         switch (gameMode) {
             case ENGLISH_TO_CHINESE:
@@ -221,7 +225,11 @@ public abstract class GameGui {
         }
     }
 
-    // 获取数据库连接
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     protected Connection getDatabaseConnection() throws SQLException {
         String url = "jdbc:mysql://localhost:3306/vocabulary_db";
         String user = "root";
@@ -229,12 +237,16 @@ public abstract class GameGui {
         return DriverManager.getConnection(url, user, password);
     }
 
-    // 根据英文单词选取汉语解释
-    //从数据库中随机抽取一个单词
+    /**
+     * 根据英文单词选取汉语解释
+     * 从数据库中随机抽取一个单词
+     */
     protected void fetchRandomWord() {
         try (Connection conn = getDatabaseConnection()) {
             String sql = "SELECT enS, mean FROM words ORDER BY RAND() LIMIT 1";
+            // 创建 PreparedStatement 对象，用于执行 SQL 查询
             PreparedStatement stmt = conn.prepareStatement(sql);
+            // 执行查询，获取结果集
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
@@ -257,7 +269,9 @@ public abstract class GameGui {
         }
     }
 
-    // 设置选项按钮的文本
+    /**
+     *    从数据库中随机抽取三个其他意思，并将其设置为选项按钮的文本
+     */
     protected void setMeaningOptions() {
         meanings = new ArrayList<>();
         meanings.add(correctMeaning);
@@ -286,7 +300,9 @@ public abstract class GameGui {
         d.setText("D. " + meanings.get(3));
     }
 
-    // 从数据库中随机抽取一个中文解释并设置为题目
+    /**
+     *      从数据库中随机抽取一个中文解释并设置为题目
+     */
     protected void fetchRandomChineseExplanation() {
         try (Connection conn = getDatabaseConnection()) {
             String sql = "SELECT enS, mean FROM words ORDER BY RAND() LIMIT 1";
@@ -321,7 +337,11 @@ public abstract class GameGui {
         }
     }
 
-    // 更新分数和生命值的方法
+    /**
+     * 更新hp和分数信息
+     * @param isCorrect
+     * @param hasSubmitted
+     */
     protected void updateScoreAndHp(boolean isCorrect, boolean hasSubmitted) {
         if (isCorrect && hasSubmitted) {
             scoreManager.addScore(1);
@@ -356,7 +376,9 @@ public abstract class GameGui {
         }
     }
 
-
+    /**
+     * 关闭页面
+     */
     protected void dispose() {
         countdownTimer.stop();
         countdownTimer.reset();

@@ -10,8 +10,10 @@ public class EnglishToChineseGame extends GameGui {
 
     public EnglishToChineseGame(Client client) {
         super(GameMode.ENGLISH_TO_CHINESE, client);
-        countdownTimer.setOnTimeOverCallback(() -> handleTimeOver()); // 设置回调函数
+        // 设置回调函数 倒计时结束时调用
+        countdownTimer.setOnTimeOverCallback(() -> handleTimeOver());
     }
+
 
     @Override
     protected void initializeButtonListeners() {
@@ -21,6 +23,10 @@ public class EnglishToChineseGame extends GameGui {
         d.addActionListener(e -> checkAnswer("D"));
     }
 
+    /**
+     * 检查用户选择的答案是否正确
+     * @param selectedOption 用户选择的选项
+     */
     private void checkAnswer(String selectedOption) {
         String userAnswer = meanings.get(getButtonIndex(selectedOption));
         boolean isCorrect = userAnswer.equals(correctMeaning);
@@ -33,7 +39,9 @@ public class EnglishToChineseGame extends GameGui {
             FileUtil.saveUnmasteredWord(currentWord, correctMeaning, "作答错误");
         }
 
+        // 管理得分和hp
         updateScoreAndHp(isCorrect, true);
+
         countdownTimer.stop(); // 停止计时器
         fetchRandomWord();
     }
@@ -57,6 +65,7 @@ public class EnglishToChineseGame extends GameGui {
         JOptionPane.showMessageDialog(j, "您没有回答，正确答案是：" + correctMeaning);
         FileUtil.saveUnmasteredWord(currentWord, correctMeaning, "未作答");
         updateScoreAndHp(false, false); // 处理未作答的情况
+
         countdownTimer.stop(); // 停止计时器
         fetchRandomWord(); // 获取新题目并重启计时器
     }

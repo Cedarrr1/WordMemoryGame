@@ -9,7 +9,7 @@ public class LoginGui extends JFrame {
     private JButton loginButton;
     private JButton exitButton;
     private JTextField usernameField;
-    private JPasswordField passwordField;
+    private JPasswordField passwordField;;
 
     private static final int WINDOW_WIDTH = 600;
     private static final int WINDOW_HEIGHT = 700;
@@ -79,6 +79,7 @@ public class LoginGui extends JFrame {
             }
         });
 
+
         // 添加组件到登录面板
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -132,7 +133,6 @@ public class LoginGui extends JFrame {
     }
 
     public void showSuccessMessage() {
-        JOptionPane.showMessageDialog(this, "登录成功！", "成功", JOptionPane.INFORMATION_MESSAGE);
         dispose(); // 关闭当前窗口
         new MainGui(client); // 打开 MainGui 窗口
     }
@@ -153,6 +153,7 @@ public class LoginGui extends JFrame {
             }
         });
     }
+
 }
 
 

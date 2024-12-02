@@ -20,7 +20,7 @@ public class ChineseToEnglishGame extends GameGui {
     }
 
     private void checkAnswer() {
-        String userInput = inputField.getText().trim();
+        String userInput = inputField.getText().trim(); // 去除首尾空格
         boolean isCorrect = userInput.equalsIgnoreCase(currentWord);
 
         if (isCorrect) {
