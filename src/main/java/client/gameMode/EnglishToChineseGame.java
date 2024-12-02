@@ -46,6 +46,12 @@ public class EnglishToChineseGame extends GameGui {
         fetchRandomWord();
     }
 
+    /**
+     *
+     * @param option
+     * @return 案件-索引的映射
+     * 无效则返回 -1
+     */
     private int getButtonIndex(String option) {
         switch (option) {
             case "A":
@@ -61,6 +67,9 @@ public class EnglishToChineseGame extends GameGui {
         }
     }
 
+    /**
+     * 初始化游戏逻辑
+     */
     private void handleTimeOver() {
         JOptionPane.showMessageDialog(j, "您没有回答，正确答案是：" + correctMeaning);
         FileUtil.saveUnmasteredWord(currentWord, correctMeaning, "未作答");

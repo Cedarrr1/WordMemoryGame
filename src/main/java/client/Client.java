@@ -66,7 +66,7 @@ public class Client extends Component {
         Client client = new Client();
         //启动login界面
         SwingUtilities.invokeLater(() -> {
-            System.out.println("Attempting to connect to LoginGui...");
+            System.out.println("connecting to LoginGui...");
             LoginGui loginGui = new LoginGui(client);
         });
 
@@ -101,8 +101,6 @@ public class Client extends Component {
             e.printStackTrace();
         }
     }
-
-
 }
 
 

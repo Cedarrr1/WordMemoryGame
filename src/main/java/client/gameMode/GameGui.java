@@ -22,8 +22,8 @@ import java.util.List;
 
 public abstract class GameGui {
     protected JFrame j;
-    protected JPanel engWordPanel, centerPanel, timerPanel, inputPanel, choicesPanel;
-    protected JLabel engWordLabel, timerLabel, scoreLabel, hpLabel;
+    protected JPanel wordPanel, centerPanel, timerPanel, inputPanel, choicesPanel;
+    protected JLabel wordLabel, timerLabel, scoreLabel, hpLabel;
     private HealthBar hpBar;
     protected JButton a, b, c, d;
     protected JTextField inputField;
@@ -62,15 +62,16 @@ public abstract class GameGui {
 
         // 初始化窗口
         j = new JFrame("Game page");
-        j.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        j.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // 默认关闭窗口，资源自动释放
         j.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         j.setLocationRelativeTo(null);
 
-        // 初始化分数管理器
+        // 初始化分数和hp管理器
         scoreManager = new ScoreManager(0, 10); // 初始分数为0，初始生命值为10
         hpBar = new HealthBar(scoreManager);
 
-        engWordPanel = createEngWordPanel();
+        // 初始化主要面板
+        wordPanel = createEngWordPanel();
         timerPanel = createTimerPanel();
 
         // 根据游戏模式创建不同的中心面板
@@ -108,7 +109,7 @@ public abstract class GameGui {
         j.add(quitButton, BorderLayout.SOUTH);
 
         // 添加面板到窗口
-        j.add(engWordPanel, BorderLayout.NORTH);
+        j.add(wordPanel, BorderLayout.NORTH);
         j.add(centerPanel, BorderLayout.CENTER);
         j.add(hpBar, BorderLayout.EAST);
 
@@ -128,9 +129,9 @@ public abstract class GameGui {
         panel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10)); // 添加水平和垂直间距
 
         // 添加英文单词的显示组件
-        engWordLabel = new JLabel("单词: ");
-        engWordLabel.setFont(new Font("SimSun", Font.BOLD, 18)); // 设置字体
-        panel.add(engWordLabel);
+        wordLabel = new JLabel("单词: ");
+        wordLabel.setFont(new Font("SimSun", Font.BOLD, 18)); // 设置字体
+        panel.add(wordLabel);
 
         return panel;
     }
@@ -252,7 +253,7 @@ public abstract class GameGui {
             if (rs.next()) {
                 currentWord = rs.getString("enS");
                 correctMeaning = rs.getString("mean");
-                engWordLabel.setText("单词: " + currentWord);
+                wordLabel.setText("单词: " + currentWord);
                 setMeaningOptions();
             }
         } catch (SQLException e) {
@@ -321,7 +322,7 @@ public abstract class GameGui {
                 }
                 maskedWord.append(currentWord.charAt(currentWord.length() - 1));
 
-                engWordLabel.setText("<html><div style='text-align:center;'>中文解释: " + currentMeaning + "<br>" + maskedWord.toString() + "</div></html>");
+                wordLabel.setText("<html><div style='text-align:center;'>中文解释: " + currentMeaning + "<br>" + maskedWord.toString() + "</div></html>");
                 inputField.setText("");
             }
         } catch (SQLException e) {

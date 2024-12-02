@@ -10,7 +10,7 @@ public class ChineseToEnglishGame extends GameGui {
 
     public ChineseToEnglishGame(Client client) {
         super(GameMode.CHINESE_TO_ENGLISH, client);
-        countdownTimer.setOnTimeOverCallback(() -> handleTimeOver()); // 设置回调函数 时间归零则新开一轮游戏
+        countdownTimer.setOnTimeOverCallback(() -> handleTimeOver()); // 时间归零则新开一轮游戏
     }
 
     @Override
@@ -31,8 +31,9 @@ public class ChineseToEnglishGame extends GameGui {
             FileUtil.saveUnmasteredWord(currentWord, currentMeaning, "作答错误");
         }
 
-        //更新血条信息
+
         boolean hasSubmitted = !userInput.isEmpty();
+        //更新血条信息
         updateScoreAndHp(isCorrect, hasSubmitted);
 
         countdownTimer.stop(); // 停止计时器
@@ -49,6 +50,8 @@ public class ChineseToEnglishGame extends GameGui {
         JOptionPane.showMessageDialog(j, "您没有回答，正确答案是：" + currentWord);
         FileUtil.saveUnmasteredWord(currentWord, currentMeaning, "未作答");
         updateScoreAndHp(false, false); // 处理未作答的情况
+
+        countdownTimer.stop(); // 停止计时器
         fetchRandomChineseExplanation(); // 获取新题目并重启计时器
     }
 }

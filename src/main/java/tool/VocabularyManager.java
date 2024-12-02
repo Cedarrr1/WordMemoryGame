@@ -1,5 +1,3 @@
-
-
 package tool;
 
 import com.google.gson.Gson;

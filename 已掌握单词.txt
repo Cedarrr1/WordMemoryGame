@@ -4,3 +4,14 @@ drain: 排水, 流干
 evoke: 唤起, 引起, 博得
 disgust: 使作呕
 
+approach: 接近, 动手处理
+combat: 战斗, 搏斗, 抗击
+fake: 假货, 欺骗
+proof: 检验, 校对, 使不被穿透
+religious: 信奉宗教的, 虔诚的, 宗教上的, 修道的, 严谨的
+abundance: 丰富, 充裕, 丰富充裕
+shark: [鱼]鲨鱼, 骗子<俚>内行, 专家
+barricade: 路障
+float: 漂流物, 浮舟, 浮萍, 彩车
+fulfill: 履行, 实现, 完成(计划等)
+decay: 腐朽, 腐烂, 衰减, 衰退
